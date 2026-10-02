@@ -4,144 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Электронный Портал Колледжа</title>
-    <style>
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: "Segoe UI", Arial, sans-serif;
-      }
-      body {
-        background-color: #f4f6f9;
-        color: #333;
-        padding: 15px;
-      }
-      .container {
-        max-width: 1000px;
-        margin: 0 auto;
-        background: #fff;
-        padding: 20px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-      }
-      h2,
-      h3 {
-        text-align: center;
-        color: #2c3e50;
-        margin-bottom: 15px;
-      }
-      .form-group {
-        margin-bottom: 12px;
-      }
-      label {
-        display: block;
-        margin-bottom: 4px;
-        font-weight: 600;
-        font-size: 13px;
-      }
-      input,
-      select,
-      button {
-        width: 100%;
-        padding: 8px 12px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 14px;
-      }
-      button {
-        background-color: #3498db;
-        color: white;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        margin-top: 5px;
-      }
-      button:hover {
-        background-color: #2980b9;
-      }
-      .hidden {
-        display: none;
-      }
-      .user-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background: #eef2f7;
-        padding: 12px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-      }
-      .panel {
-        background: #f8f9fa;
-        border: 1px solid #e9ecef;
-        padding: 15px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-      }
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 10px;
-        font-size: 13px;
-      }
-      th,
-      td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-      }
-      th {
-        background-color: #3498db;
-        color: white;
-      }
-      tr:nth-child(even) {
-        background-color: #f9f9f9;
-      }
-      .grid-3 {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 10px;
-      }
-      .tab-menu {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 15px;
-        flex-wrap: wrap;
-      }
-      .tab-btn {
-        background: #e2e8f0;
-        color: #334155;
-        font-size: 12px;
-        padding: 8px 10px;
-        flex: 1;
-        min-width: 90px;
-      }
-      .tab-btn.active {
-        background: #3498db;
-        color: white;
-      }
-      .action-btn {
-        width: auto;
-        padding: 4px 8px;
-        font-size: 12px;
-        margin-top: 0;
-      }
-      .card {
-        background: #fafafa;
-        border-left: 4px solid #3498db;
-        padding: 12px;
-        margin-bottom: 10px;
-        border-radius: 6px;
-      }
-      .grade-badge {
-        float: right;
-        background: #2ecc71;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-weight: bold;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
@@ -150,7 +13,7 @@
         <h2>Вход в Портал Колледжа</h2>
         <div class="form-group">
           <label>Email:</label
-          ><input type="email" id="email" value="teacher1@college.kz" />
+          ><input type="email" id="email" value="admin@college.kz" />
         </div>
         <div class="form-group">
           <label>Пароль:</label
@@ -199,7 +62,7 @@
             </button>
           </div>
 
-          <!-- Вкладка 1: Ввод оценок -->
+          <!-- Ввод оценок -->
           <div id="teach-tab-sheet">
             <div
               class="panel"
@@ -281,7 +144,7 @@
             </div>
           </div>
 
-          <!-- Вкладка 2: Журнал успеваемости со списками студентов и их оценками -->
+          <!-- Журнал успеваемости -->
           <div id="teach-tab-journal" class="panel hidden">
             <div
               style="
@@ -400,7 +263,7 @@
             </button>
           </div>
 
-          <!-- 1. Создание Факультета -->
+          <!-- Факультет -->
           <div id="adm-tab-faculty" class="panel">
             <h4>Добавить Факультет</h4>
             <div class="form-group">
@@ -425,7 +288,7 @@
             </table>
           </div>
 
-          <!-- 2. Создание Специальности -->
+          <!-- Специальность -->
           <div id="adm-tab-specialty" class="panel hidden">
             <h4>Добавить Специальность</h4>
             <div class="form-group">
@@ -463,7 +326,7 @@
             </table>
           </div>
 
-          <!-- 3. Создание Группы -->
+          <!-- Группа -->
           <div id="adm-tab-group" class="panel hidden">
             <h4>Добавить Группу</h4>
             <div class="form-group">
@@ -481,7 +344,7 @@
             <button onclick="createGroup()">Сохранить группу</button>
           </div>
 
-          <!-- 4. Добавление Предмета -->
+          <!-- Предмет -->
           <div id="adm-tab-subject" class="panel hidden">
             <h4>Добавить Предмет</h4>
             <div class="form-group">
@@ -495,7 +358,7 @@
             <button onclick="createAdminSubject()">Сохранить предмет</button>
           </div>
 
-          <!-- 5. Добавление в Расписание -->
+          <!-- Расписание -->
           <div id="adm-tab-schedule" class="panel hidden">
             <h4>Добавить в Расписание</h4>
             <div class="form-group">
@@ -531,7 +394,7 @@
             <button onclick="createAdminSchedule()">Сохранить пару</button>
           </div>
 
-          <!-- 6. Создание Аккаунта -->
+          <!-- Аккаунт -->
           <div id="adm-tab-user" class="panel hidden">
             <h4>Создать Пользователя</h4>
             <div class="form-group">
@@ -573,7 +436,7 @@
             <button onclick="createUser()">Создать учетную запись</button>
           </div>
 
-          <!-- 7. Прикрепление / Перевод Студента -->
+          <!-- Привязать студента -->
           <div id="adm-tab-assign" class="panel hidden">
             <h4>Прикрепление / Перевод существующего студента</h4>
             <div class="form-group">
@@ -606,7 +469,7 @@
             </button>
           </div>
 
-          <!-- 8. Сброс Пароля -->
+          <!-- Сброс пароля -->
           <div id="adm-tab-password" class="panel hidden">
             <h4>Изменение / Сброс пароля</h4>
             <div class="form-group">
@@ -620,7 +483,7 @@
             <button onclick="changeUserPassword()">Изменить пароль</button>
           </div>
 
-          <!-- 9. Список Студентов -->
+          <!-- Списки -->
           <div id="adm-tab-list-students" class="panel hidden">
             <div
               style="
@@ -651,7 +514,6 @@
             </table>
           </div>
 
-          <!-- 10. Список Преподавателей -->
           <div id="adm-tab-list-teachers" class="panel hidden">
             <h4>Список преподавателей</h4>
             <table>
@@ -666,7 +528,6 @@
             </table>
           </div>
 
-          <!-- 11. Общее Расписание -->
           <div id="adm-tab-list-schedule" class="panel hidden">
             <div
               style="
@@ -715,641 +576,10 @@
       </div>
     </div>
 
-    <script>
-      const API = "http://localhost:3000/api";
-      let currentUser = null;
-
-      async function login() {
-        const res = await fetch(`${API}/auth/login`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            email: email.value,
-            password: password.value,
-          }),
-        });
-        const data = await res.json();
-        if (!res.ok) {
-          document.getElementById("login-error").innerText =
-            data.error || "Ошибка входа";
-          return;
-        }
-
-        currentUser = data.user;
-        document.getElementById("login-block").classList.add("hidden");
-        document.getElementById("portal-block").classList.remove("hidden");
-        document.getElementById("user-name").innerText = currentUser.full_name;
-        document.getElementById("user-role").innerText =
-          `(${currentUser.role.toUpperCase()})`;
-
-        if (currentUser.role === "admin") {
-          document.getElementById("admin-view").classList.remove("hidden");
-          document.getElementById("teacher-view").classList.add("hidden");
-          document.getElementById("student-view").classList.add("hidden");
-          initAdminPanel();
-        } else if (currentUser.role === "teacher") {
-          document.getElementById("teacher-view").classList.remove("hidden");
-          document.getElementById("admin-view").classList.add("hidden");
-          document.getElementById("student-view").classList.add("hidden");
-          initVedFilters();
-        } else if (currentUser.role === "student") {
-          document.getElementById("student-view").classList.remove("hidden");
-          document.getElementById("admin-view").classList.add("hidden");
-          document.getElementById("teacher-view").classList.add("hidden");
-          loadStudentGrades();
-          loadStudentSchedule();
-        }
-      }
-
-      function downloadCSV(endpoint) {
-        window.location.href = `${API.replace("/api", "")}${endpoint}`;
-      }
-
-      // ЛОГИКА ПРЕПОДАВАТЕЛЯ
-      function switchTeacherTab(tab) {
-        document.getElementById("teach-tab-sheet").classList.add("hidden");
-        document.getElementById("teach-tab-journal").classList.add("hidden");
-        document.getElementById("btn-teach-sheet").classList.remove("active");
-        document.getElementById("btn-teach-journal").classList.remove("active");
-
-        if (tab === "sheet") {
-          document.getElementById("teach-tab-sheet").classList.remove("hidden");
-          document.getElementById("btn-teach-sheet").classList.add("active");
-        } else {
-          document
-            .getElementById("teach-tab-journal")
-            .classList.remove("hidden");
-          document.getElementById("btn-teach-journal").classList.add("active");
-          loadTeacherJournal();
-        }
-      }
-
-      async function loadTeacherJournal() {
-        const res = await fetch(`${API}/teacher/all-grades-filtered`);
-        const data = await res.json();
-        const tbody = document.getElementById("tbl-teacher-journal");
-        tbody.innerHTML = "";
-        data.grades.forEach((g) => {
-          const d = new Date(g.date).toLocaleDateString("ru-RU");
-          tbody.innerHTML += `
-            <tr>
-              <td><strong>${g.student_name}</strong></td>
-              <td>${g.student_card || "—"}</td>
-              <td>${g.faculty_name || "—"} / ${g.group_name || "—"}</td>
-              <td>${g.subject}</td>
-              <td><span class="grade-badge" style="float:none;">${g.grade}</span></td>
-              <td>${g.grade_type}</td>
-              <td>${d}</td>
-            </tr>
-          `;
-        });
-      }
-
-      // ЛОГИКА АДМИНИСТРАТОРА
-      function switchAdminTab(tab) {
-        const tabs = [
-          "faculty",
-          "specialty",
-          "group",
-          "subject",
-          "schedule",
-          "user",
-          "assign",
-          "password",
-          "list-students",
-          "list-teachers",
-          "list-schedule",
-        ];
-        tabs.forEach((t) => {
-          document.getElementById(`adm-tab-${t}`).classList.add("hidden");
-          document.getElementById(`btn-adm-${t}`).classList.remove("active");
-        });
-        document.getElementById(`adm-tab-${tab}`).classList.remove("hidden");
-        document.getElementById(`btn-adm-${tab}`).classList.add("active");
-
-        if (tab === "assign") initAssignTab();
-        if (tab === "password") loadPasswordUsersList();
-        if (tab === "list-students") loadAdminStudentsList();
-        if (tab === "list-teachers") loadAdminTeachersList();
-        if (tab === "list-schedule") loadAdminScheduleList();
-      }
-
-      async function initAdminPanel() {
-        loadFacultiesTable();
-        loadSpecialtiesTable();
-        populateFacDropdowns();
-        initScheduleDropdowns();
-      }
-
-      async function populateFacDropdowns() {
-        const res = await fetch(`${API}/faculties`);
-        const data = await res.json();
-        [
-          "spec-fac-select",
-          "grp-fac-select",
-          "usr-fac",
-          "assign-fac-select",
-        ].forEach((id) => {
-          const el = document.getElementById(id);
-          if (!el) return;
-          el.innerHTML = '<option value="">-- Выберите факультет --</option>';
-          data.faculties.forEach(
-            (f) =>
-              (el.innerHTML += `<option value="${f.id}">${f.name}</option>`),
-          );
-        });
-      }
-
-      async function initScheduleDropdowns() {
-        const resG = await fetch(`${API}/admin/groups-all`);
-        const dataG = await resG.json();
-        const grpSel = document.getElementById("adm-sched-group");
-        grpSel.innerHTML = "";
-        dataG.groups.forEach(
-          (g) =>
-            (grpSel.innerHTML += `<option value="${g.id}">${g.name}</option>`),
-        );
-
-        const resSub = await fetch(`${API}/subjects`);
-        const dataSub = await resSub.json();
-        const subSel = document.getElementById("adm-sched-subject");
-        subSel.innerHTML = "";
-        dataSub.subjects.forEach(
-          (s) =>
-            (subSel.innerHTML += `<option value="${s.id}">${s.title}</option>`),
-        );
-
-        const resT = await fetch(`${API}/admin/teachers`);
-        const dataT = await resT.json();
-        const tSel = document.getElementById("adm-sched-teacher");
-        tSel.innerHTML = "";
-        dataT.teachers.forEach(
-          (t) =>
-            (tSel.innerHTML += `<option value="${t.id}">${t.full_name}</option>`),
-        );
-      }
-
-      async function createFaculty() {
-        const name = document.getElementById("fac-name").value;
-        if (!name) return alert("Введите название факультета!");
-        const res = await fetch(`${API}/admin/faculties`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name }),
-        });
-        if (res.ok) {
-          document.getElementById("fac-name").value = "";
-          loadFacultiesTable();
-          populateFacDropdowns();
-        }
-      }
-
-      async function loadFacultiesTable() {
-        const res = await fetch(`${API}/faculties`);
-        const data = await res.json();
-        const tbody = document.getElementById("tbl-faculties");
-        tbody.innerHTML = "";
-        data.faculties.forEach((f) => {
-          tbody.innerHTML += `<tr><td>${f.id}</td><td>${f.name}</td><td><button onclick="deleteEntity('faculties', ${f.id}, loadFacultiesTable)" class="action-btn" style="background:#e74c3c;">🗑️</button></td></tr>`;
-        });
-      }
-
-      async function createSpecialty() {
-        const faculty_id = document.getElementById("spec-fac-select").value;
-        const code = document.getElementById("spec-code").value;
-        const name = document.getElementById("spec-name").value;
-        if (!faculty_id || !name || !code)
-          return alert("Заполните все поля специальности!");
-        const res = await fetch(`${API}/admin/specialties`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ faculty_id, code, name }),
-        });
-        if (res.ok) {
-          document.getElementById("spec-code").value = "";
-          document.getElementById("spec-name").value = "";
-          loadSpecialtiesTable();
-        }
-      }
-
-      async function loadSpecialtiesTable() {
-        const res = await fetch(`${API}/specialties-all`);
-        const data = await res.json();
-        const tbody = document.getElementById("tbl-specialties");
-        tbody.innerHTML = "";
-        data.specialties.forEach((s) => {
-          tbody.innerHTML += `<tr><td>${s.code}</td><td>${s.name}</td><td>${s.faculty_name || "—"}</td><td><button onclick="deleteEntity('specialties', ${s.id}, loadSpecialtiesTable)" class="action-btn" style="background:#e74c3c;">🗑️</button></td></tr>`;
-        });
-      }
-
-      async function loadGrpSpecs() {
-        const facId = document.getElementById("grp-fac-select").value;
-        const specSel = document.getElementById("grp-spec-select");
-        specSel.innerHTML = "";
-        if (!facId) return;
-        const res = await fetch(`${API}/specialties/${facId}`);
-        const data = await res.json();
-        data.specialties.forEach(
-          (s) =>
-            (specSel.innerHTML += `<option value="${s.id}">${s.code} ${s.name}</option>`),
-        );
-      }
-
-      async function createGroup() {
-        const specialty_id = document.getElementById("grp-spec-select").value;
-        const name = document.getElementById("grp-name").value;
-        if (!specialty_id || !name) return alert("Заполните все поля группы!");
-        const res = await fetch(`${API}/admin/groups`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ specialty_id, name }),
-        });
-        if (res.ok) {
-          document.getElementById("grp-name").value = "";
-          alert("Группа создана!");
-          initScheduleDropdowns();
-        }
-      }
-
-      async function createAdminSubject() {
-        const title = document.getElementById("adm-subject-title").value;
-        if (!title) return alert("Введите название предмета!");
-        const res = await fetch(`${API}/admin/subjects`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ title }),
-        });
-        if (res.ok) {
-          document.getElementById("adm-subject-title").value = "";
-          alert("Предмет добавлен!");
-          initScheduleDropdowns();
-        }
-      }
-
-      async function createAdminSchedule() {
-        const group_id = document.getElementById("adm-sched-group").value;
-        const subject_id = document.getElementById("adm-sched-subject").value;
-        const teacher_id = document.getElementById("adm-sched-teacher").value;
-        const day_of_week = document.getElementById("adm-sched-day").value;
-        const lesson_time = document.getElementById("adm-sched-time").value;
-        const classroom = document.getElementById("adm-sched-room").value;
-
-        const res = await fetch(`${API}/admin/schedule`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            group_id,
-            subject_id,
-            teacher_id,
-            day_of_week,
-            lesson_time,
-            classroom,
-          }),
-        });
-        if (res.ok) alert("Занятие добавлено в расписание!");
-      }
-
-      async function loadUsrSpecs() {
-        const facId = document.getElementById("usr-fac").value;
-        const specSel = document.getElementById("usr-spec");
-        specSel.innerHTML =
-          '<option value="">-- Выберите специальность --</option>';
-        document.getElementById("usr-group").innerHTML = "";
-        if (!facId) return;
-        const res = await fetch(`${API}/specialties/${facId}`);
-        const data = await res.json();
-        data.specialties.forEach(
-          (s) =>
-            (specSel.innerHTML += `<option value="${s.id}">${s.code} ${s.name}</option>`),
-        );
-      }
-
-      async function loadUsrGroups() {
-        const specId = document.getElementById("usr-spec").value;
-        const grSel = document.getElementById("usr-group");
-        grSel.innerHTML = "";
-        if (!specId) return;
-        const res = await fetch(`${API}/groups-by-specialty/${specId}`);
-        const data = await res.json();
-        data.groups.forEach(
-          (g) =>
-            (grSel.innerHTML += `<option value="${g.id}">${g.name}</option>`),
-        );
-      }
-
-      function toggleUserStudentFields() {
-        const role = document.getElementById("usr-role").value;
-        document.getElementById("usr-student-fields").style.display =
-          role === "student" ? "block" : "none";
-      }
-
-      async function createUser() {
-        const full_name = document.getElementById("usr-fullname").value;
-        const email = document.getElementById("usr-email").value;
-        const password = document.getElementById("usr-password").value;
-        const role = document.getElementById("usr-role").value;
-        const faculty_id = document.getElementById("usr-fac").value;
-        const specialty_id = document.getElementById("usr-spec").value;
-        const group_id = document.getElementById("usr-group").value;
-        const student_card = document.getElementById("usr-card").value;
-
-        const res = await fetch(`${API}/admin/users`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            full_name,
-            email,
-            password,
-            role,
-            faculty_id,
-            specialty_id,
-            group_id,
-            student_card,
-          }),
-        });
-        if (res.ok) alert("Пользователь успешно создан!");
-      }
-
-      async function initAssignTab() {
-        const res = await fetch(`${API}/admin/all-students-list`);
-        const data = await res.json();
-        const sel = document.getElementById("assign-student-select");
-        sel.innerHTML = '<option value="">-- Выберите студента --</option>';
-        data.students.forEach((s) => {
-          sel.innerHTML += `<option value="${s.student_id}">${s.full_name} (${s.faculty_name || "Без факультета"} / ${s.group_name || "Без группы"})</option>`;
-        });
-        populateFacDropdowns();
-      }
-
-      async function loadAssignSpecs() {
-        const facId = document.getElementById("assign-fac-select").value;
-        const specSel = document.getElementById("assign-spec-select");
-        specSel.innerHTML =
-          '<option value="">-- Выберите специальность --</option>';
-        document.getElementById("assign-group-select").innerHTML = "";
-        if (!facId) return;
-        const res = await fetch(`${API}/specialties/${facId}`);
-        const data = await res.json();
-        data.specialties.forEach(
-          (s) =>
-            (specSel.innerHTML += `<option value="${s.id}">${s.code} ${s.name}</option>`),
-        );
-      }
-
-      async function loadAssignGroups() {
-        const specId = document.getElementById("assign-spec-select").value;
-        const grSel = document.getElementById("assign-group-select");
-        grSel.innerHTML = '<option value="">-- Выберите группу --</option>';
-        if (!specId) return;
-        const res = await fetch(`${API}/groups-by-specialty/${specId}`);
-        const data = await res.json();
-        data.groups.forEach(
-          (g) =>
-            (grSel.innerHTML += `<option value="${g.id}">${g.name}</option>`),
-        );
-      }
-
-      async function saveStudentAssignment() {
-        const student_id = document.getElementById(
-          "assign-student-select",
-        ).value;
-        const faculty_id = document.getElementById("assign-fac-select").value;
-        const specialty_id =
-          document.getElementById("assign-spec-select").value;
-        const group_id = document.getElementById("assign-group-select").value;
-
-        if (!student_id) return alert("Выберите студента!");
-        const res = await fetch(`${API}/admin/students/assign`, {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            student_id,
-            faculty_id,
-            specialty_id,
-            group_id,
-          }),
-        });
-        if (res.ok) {
-          alert("Студент переведен/прикреплен!");
-          initAssignTab();
-        }
-      }
-
-      async function loadPasswordUsersList() {
-        const res = await fetch(`${API}/admin/users-list`);
-        const data = await res.json();
-        const select = document.getElementById("adm-pwd-user");
-        select.innerHTML = "";
-        data.users.forEach(
-          (u) =>
-            (select.innerHTML += `<option value="${u.id}">${u.full_name} (${u.email} - ${u.role})</option>`),
-        );
-      }
-
-      async function changeUserPassword() {
-        const user_id = document.getElementById("adm-pwd-user").value;
-        const new_password = document.getElementById("adm-pwd-new").value;
-        const res = await fetch(`${API}/admin/change-password`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ user_id, new_password }),
-        });
-        if (res.ok) alert("Пароль обновлен!");
-      }
-
-      async function loadAdminStudentsList() {
-        const res = await fetch(`${API}/admin/all-students-list`);
-        const data = await res.json();
-        const tbody = document.getElementById("tbl-students");
-        tbody.innerHTML = "";
-        data.students.forEach((s) => {
-          tbody.innerHTML += `<tr>
-            <td>${s.full_name}</td><td>${s.email}</td>
-            <td>${s.faculty_name || "—"} / ${s.group_name || "—"}</td>
-            <td>${s.student_card || "—"}</td>
-            <td><button onclick="deleteEntity('users', ${s.student_id}, loadAdminStudentsList)" class="action-btn" style="background:#e74c3c;">🗑️</button></td>
-          </tr>`;
-        });
-      }
-
-      async function loadAdminTeachersList() {
-        const res = await fetch(`${API}/admin/teachers-list`);
-        const data = await res.json();
-        const tbody = document.getElementById("tbl-teachers");
-        tbody.innerHTML = "";
-        data.teachers.forEach((t) => {
-          tbody.innerHTML += `<tr>
-            <td>${t.full_name}</td><td>${t.email}</td>
-            <td><button onclick="deleteEntity('users', ${t.id}, loadAdminTeachersList)" class="action-btn" style="background:#e74c3c;">🗑️</button></td>
-          </tr>`;
-        });
-      }
-
-      async function loadAdminScheduleList() {
-        const res = await fetch(`${API}/admin/schedule-list`);
-        const data = await res.json();
-        const tbody = document.getElementById("tbl-schedule");
-        tbody.innerHTML = "";
-        data.schedule.forEach((s) => {
-          tbody.innerHTML += `<tr>
-            <td>${s.group_name}</td><td>${s.day_of_week}</td><td>${s.lesson_time}</td><td>${s.subject}</td><td>${s.teacher || "—"}</td><td>${s.classroom}</td>
-            <td><button onclick="deleteEntity('schedule', ${s.id}, loadAdminScheduleList)" class="action-btn" style="background:#e74c3c;">🗑️</button></td>
-          </tr>`;
-        });
-      }
-
-      async function deleteEntity(entityType, id, reloadCallback) {
-        if (!confirm("Удалить эту запись?")) return;
-        const res = await fetch(`${API}/admin/${entityType}/${id}`, {
-          method: "DELETE",
-        });
-        if (res.ok && reloadCallback) reloadCallback();
-      }
-
-      // ЛОГИКА ВЕДОМОСТИ ПРЕПОДАВАТЕЛЯ
-      async function initVedFilters() {
-        const resFac = await fetch(`${API}/faculties`);
-        const dataFac = await resFac.json();
-        const facSel = document.getElementById("ved-fac");
-        facSel.innerHTML = '<option value="">-- Все Факультеты --</option>';
-        dataFac.faculties.forEach(
-          (f) =>
-            (facSel.innerHTML += `<option value="${f.id}">${f.name}</option>`),
-        );
-
-        const resSub = await fetch(`${API}/subjects`);
-        const dataSub = await resSub.json();
-        const subSel = document.getElementById("ved-subject");
-        subSel.innerHTML = "";
-        dataSub.subjects.forEach(
-          (s) =>
-            (subSel.innerHTML += `<option value="${s.id}">${s.title}</option>`),
-        );
-      }
-
-      async function loadVedSpecialties() {
-        const facId = document.getElementById("ved-fac").value;
-        const specSel = document.getElementById("ved-spec");
-        specSel.innerHTML = '<option value="">-- Все Специальности --</option>';
-        document.getElementById("ved-group").innerHTML =
-          '<option value="">-- Все Группы --</option>';
-        if (!facId) return;
-
-        const res = await fetch(`${API}/specialties/${facId}`);
-        const data = await res.json();
-        data.specialties.forEach(
-          (sp) =>
-            (specSel.innerHTML += `<option value="${sp.id}">${sp.code} ${sp.name}</option>`),
-        );
-      }
-
-      async function loadVedGroups() {
-        const specId = document.getElementById("ved-spec").value;
-        const grSel = document.getElementById("ved-group");
-        grSel.innerHTML = '<option value="">-- Все Группы --</option>';
-        if (!specId) return;
-
-        const res = await fetch(`${API}/groups-by-specialty/${specId}`);
-        const data = await res.json();
-        data.groups.forEach(
-          (g) =>
-            (grSel.innerHTML += `<option value="${g.id}">${g.name}</option>`),
-        );
-      }
-
-      async function fillSheet() {
-        const fac = document.getElementById("ved-fac").value;
-        const spec = document.getElementById("ved-spec").value;
-        const group = document.getElementById("ved-group").value;
-
-        const res = await fetch(
-          `${API}/teacher/students-filter?faculty_id=${fac}&specialty_id=${spec}&group_id=${group}`,
-        );
-        const data = await res.json();
-        const tbody = document.getElementById("sheet-body");
-        tbody.innerHTML = "";
-
-        if (!data.students || data.students.length === 0) {
-          tbody.innerHTML =
-            '<tr><td colspan="5" style="text-align:center;">Студенты не найдены</td></tr>';
-          return;
-        }
-
-        data.students.forEach((s, idx) => {
-          tbody.innerHTML += `
-            <tr>
-              <td>${idx + 1}</td>
-              <td>${s.student_card || "—"}</td>
-              <td><strong>${s.full_name}</strong></td>
-              <td>${s.faculty || "—"} / ${s.specialty || "—"} (${s.group_name || "—"})</td>
-              <td>
-                <input type="number" class="grade-input" data-id="${s.student_id}" min="1" max="100" placeholder="0-100" />
-              </td>
-            </tr>
-          `;
-        });
-      }
-
-      async function saveSheet() {
-        const subject_id = document.getElementById("ved-subject").value;
-        const grade_type = document.getElementById("ved-type").value;
-        const inputs = document.querySelectorAll(".grade-input");
-
-        const grades_data = [];
-        inputs.forEach((i) => {
-          if (i.value.trim() !== "")
-            grades_data.push({
-              student_id: i.dataset.id,
-              grade: parseInt(i.value, 10),
-            });
-        });
-
-        if (grades_data.length === 0)
-          return alert("Заполните хотя бы одну оценку!");
-
-        const res = await fetch(`${API}/teacher/grades-bulk`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            subject_id,
-            teacher_id: currentUser.id,
-            grade_type,
-            grades_data,
-          }),
-        });
-
-        if (res.ok) {
-          document.getElementById("sheet-msg").innerText =
-            "✅ Ведомость успешно проведена!";
-          setTimeout(() => {
-            document.getElementById("sheet-msg").innerText = "";
-            fillSheet();
-          }, 2500);
-        }
-      }
-
-      // ЛОГИКА СТУДЕНТА
-      async function loadStudentGrades() {
-        const res = await fetch(
-          `${API}/student/grades/${currentUser.student_id}`,
-        );
-        const data = await res.json();
-        const div = document.getElementById("student-grades");
-        div.innerHTML = "";
-        data.grades.forEach((g) => {
-          div.innerHTML += `<div class="card"><span class="grade-badge">${g.grade} б.</span><strong>${g.subject}</strong><br><small>Тип: ${g.grade_type} | Преподаватель: ${g.teacher || "—"}</small></div>`;
-        });
-      }
-
-      async function loadStudentSchedule() {
-        const res = await fetch(`${API}/schedule/${currentUser.group_id}`);
-        const data = await res.json();
-        const div = document.getElementById("student-schedule");
-        div.innerHTML = "";
-        data.schedule.forEach((s) => {
-          div.innerHTML += `<div class="card" style="border-left-color:#f39c12;"><strong>${s.day_of_week} (${s.lesson_time})</strong><br><small>${s.subject} | ${s.classroom}</small></div>`;
-        });
-      }
-    </script>
+    <!-- Подключение скриптов в нужном порядке -->
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+    <script src="js/teacher.js"></script>
+    <script src="js/student.js"></script>
   </body>
 </html>
