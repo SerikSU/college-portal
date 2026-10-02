@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Составление расписания</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+      }
+      .card {
+        max-width: 450px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .field {
+        margin-bottom: 12px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background: #8e44ad;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #71368a;
+      }
+      .msg {
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>3. Добавить пару в расписание</h2>
+
+      <div class="field">
+        <label>Группа:</label>
+        <select id="groupId"></select>
+      </div>
+
+      <div class="field">
+        <label>Предмет:</label>
+        <select id="subjectId"></select>
+      </div>
+
+      <div class="field">
+        <label>Преподаватель:</label>
+        <select id="teacherId"></select>
+      </div>
+
+      <div class="field">
+        <label>День недели:</label>
+        <select id="dayOfWeek">
+          <option value="Понедельник">Понедельник</option>
+          <option value="Вторник">Вторник</option>
+          <option value="Среда">Среда</option>
+          <option value="Четверг">Четверг</option>
+          <option value="Пятница">Пятница</option>
+          <option value="Суббота">Суббота</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Время проведения (слот):</label>
+        <input type="text" id="lessonTime" value="09:00 - 10:20" />
+      </div>
+
+      <div class="field">
+        <label>Аудитория / Кабинет:</label>
+        <input type="text" id="classroom" value="301 Каб" />
+      </div>
+
+      <button onclick="createSchedule()">Добавить в расписание</button>
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <script>
+      async function initData() {
+        // 1. Загрузка групп
+        const resG = await fetch("/api/admin/groups");
+        const dataG = await resG.json();
+        const gSelect = document.getElementById("groupId");
+        dataG.groups.forEach(
+          (g) =>
+            (gSelect.innerHTML += `<option value="${g.id}">${g.name}</option>`),
+        );
+
+        // 2. Загрузка предметов
+        const resSub = await fetch("/api/admin/subjects");
+        const dataSub = await resSub.json();
+        const subSelect = document.getElementById("subjectId");
+        dataSub.subjects.forEach(
+          (s) =>
+            (subSelect.innerHTML += `<option value="${s.id}">${s.title}</option>`),
+        );
+
+        // 3. Загрузка преподавателей
+        const resT = await fetch("/api/admin/teachers");
+        const dataT = await resT.json();
+        const tSelect = document.getElementById("teacherId");
+        dataT.teachers.forEach(
+          (t) =>
+            (tSelect.innerHTML += `<option value="${t.id}">${t.full_name}</option>`),
+        );
+      }
+
+      async function createSchedule() {
+        const body = {
+          group_id: document.getElementById("groupId").value,
+          subject_id: document.getElementById("subjectId").value,
+          teacher_id: document.getElementById("teacherId").value,
+          day_of_week: document.getElementById("dayOfWeek").value,
+          lesson_time: document.getElementById("lessonTime").value,
+          classroom: document.getElementById("classroom").value,
+        };
+
+        const res = await fetch("/api/admin/schedule", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+
+        const msg = document.getElementById("msg");
+        if (res.ok) {
+          msg.style.color = "green";
+          msg.innerText = "Пара успешно добавлена!";
+        } else {
+          msg.style.color = "red";
+          msg.innerText = "Ошибка сохранения расписания";
+        }
+      }
+
+      initData();
+    </script>
+  </body>
+</html>

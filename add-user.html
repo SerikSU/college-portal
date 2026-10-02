@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Добавление пользователя</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+      }
+      .card {
+        max-width: 450px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .field {
+        margin-bottom: 12px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      input,
+      select,
+      button {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background: #27ae60;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #219150;
+      }
+      .msg {
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>1. Создать пользователя</h2>
+
+      <div class="field">
+        <label>ФИО:</label>
+        <input type="text" id="fullName" placeholder="Иванов Иван Иванович" />
+      </div>
+
+      <div class="field">
+        <label>Email (Логин):</label>
+        <input type="email" id="email" placeholder="student2@college.kz" />
+      </div>
+
+      <div class="field">
+        <label>Пароль:</label>
+        <input type="password" id="password" value="123456" />
+      </div>
+
+      <div class="field">
+        <label>Роль:</label>
+        <select id="role" onchange="toggleGroupSelect()">
+          <option value="student">Студент</option>
+          <option value="teacher">Преподаватель</option>
+          <option value="admin">Администратор</option>
+        </select>
+      </div>
+
+      <div class="field" id="groupBlock">
+        <label>Группа (для студента):</label>
+        <select id="groupId"></select>
+      </div>
+
+      <button onclick="createUser()">Зарегистрировать</button>
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <script>
+      async function loadGroups() {
+        const res = await fetch("/api/admin/groups");
+        const data = await res.json();
+        const select = document.getElementById("groupId");
+        select.innerHTML = "";
+        data.groups.forEach((g) => {
+          select.innerHTML += `<option value="${g.id}">${g.name}</option>`;
+        });
+      }
+
+      function toggleGroupSelect() {
+        const role = document.getElementById("role").value;
+        document.getElementById("groupBlock").style.display =
+          role === "student" ? "block" : "none";
+      }
+
+      async function createUser() {
+        const body = {
+          full_name: document.getElementById("fullName").value,
+          email: document.getElementById("email").value,
+          password: document.getElementById("password").value,
+          role: document.getElementById("role").value,
+          group_id: document.getElementById("groupId").value,
+        };
+
+        const res = await fetch("/api/admin/users", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+
+        const msg = document.getElementById("msg");
+        if (res.ok) {
+          msg.style.color = "green";
+          msg.innerText = "Пользователь успешно создан!";
+        } else {
+          msg.style.color = "red";
+          msg.innerText = "Ошибка при создании пользователя";
+        }
+      }
+
+      loadGroups();
+    </script>
+  </body>
+</html>

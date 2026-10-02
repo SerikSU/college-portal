@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Добавление предмета</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background: #f4f6f9;
+        padding: 20px;
+      }
+      .card {
+        max-width: 450px;
+        margin: auto;
+        background: white;
+        padding: 25px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      .field {
+        margin-bottom: 12px;
+      }
+      label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 4px;
+      }
+      input,
+      button {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background: #2980b9;
+        color: white;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+      button:hover {
+        background: #1f6391;
+      }
+      .msg {
+        margin-top: 10px;
+        text-align: center;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h2>2. Добавить новый предмет</h2>
+
+      <div class="field">
+        <label>Название предмета:</label>
+        <input
+          type="text"
+          id="title"
+          placeholder="например, Высшая математика"
+        />
+      </div>
+
+      <button onclick="createSubject()">Сохранить предмет</button>
+      <div id="msg" class="msg"></div>
+    </div>
+
+    <script>
+      async function createSubject() {
+        const title = document.getElementById("title").value;
+
+        const res = await fetch("/api/admin/subjects", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title }),
+        });
+
+        const msg = document.getElementById("msg");
+        if (res.ok) {
+          msg.style.color = "green";
+          msg.innerText = "Предмет успешно добавлен!";
+          document.getElementById("title").value = "";
+        } else {
+          msg.style.color = "red";
+          msg.innerText = "Ошибка добавления предмета";
+        }
+      }
+    </script>
+  </body>
+</html>
